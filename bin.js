@@ -53,10 +53,7 @@ client.search
     })
     .then((users) => {
         stringify(users, function(err, output) {
-            if (err) {
-                console.log(err);
-                return;
-            }
+            if (err) throw err;
 
             fs.writeFile('users.csv', output, (err) => {
                 if (err) throw err;
