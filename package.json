@@ -22,6 +22,7 @@
     "commander": "^2.15.1",
     "csv-stringify": "^3.0.0",
     "flatten-array": "^1.0.0",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
   }
 }

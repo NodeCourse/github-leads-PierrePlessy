@@ -3,9 +3,10 @@ const client = require('./client.js')
 const flatten = require('flatten-array');
 const stringify = require('csv-stringify');
 const fs = require('fs');
+const path = require('path')
 
-const path = 'fileCSV.csv'
-const query = `created:2018-06-06..* language:javascript stars:>0`
+let query = `created:2018-06-06..* language:javascript stars:>0`
+let pathFile = 'users.csv'
 
 program
     .version('0.1.0')
@@ -23,6 +24,9 @@ if (program.token) {
 
 if (program.languages)
     query = `created:2018-06-06..* language:${program.languages} stars:>0`
+
+if (program.output)
+    pathFile = path.join(program.output, pathFile)
 
 client.search
     .repos({
@@ -55,7 +59,7 @@ client.search
         stringify(users, function(err, output) {
             if (err) throw err;
 
-            fs.writeFile('users.csv', output, (err) => {
+            fs.writeFile(pathFile, output, (err) => {
                 if (err) throw err;
                 console.log(`The file has been saved : users.csv`);
             });
